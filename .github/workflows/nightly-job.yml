@@ -2,8 +2,10 @@ name: Run Robot Framework Tests
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 17 * * *'
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
