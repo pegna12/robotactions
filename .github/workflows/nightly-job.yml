@@ -34,7 +34,11 @@ jobs:
     if: always()
     needs: test
     runs-on: ubuntu-latest
-    
+    permissions:
+      contents: read
+      issues: write
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v7
       - name: Download Robot Framework Test Report
