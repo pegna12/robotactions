@@ -27,17 +27,17 @@ jobs:
           name: robot-framework-report
           path: ./results
 
-    report:
-      if: always()
-      needs: test
-      runs-on: ubuntu-latest
-      
-      steps:
-        - uses: actions/checkout@v7
-        - name: Download Robot Framework Test Report
-          uses: actions/download-artifact@v3
-          with:
-            name: robot-framework-report
-            path: ./results
-        - name: Upload Robot Framework Test Report GH
-          uses: joonvena/robotframework-reporter-action@v2.5
+  report:
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v7
+      - name: Download Robot Framework Test Report
+        uses: actions/download-artifact@v3
+        with:
+          name: robot-framework-report
+          path: ./results
+      - name: Upload Robot Framework Test Report GH
+        uses: joonvena/robotframework-reporter-action@v2.5
