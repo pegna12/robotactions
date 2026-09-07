@@ -1,0 +1,5 @@
+{
+    "tts.deactivateTtsTestExplorer": true,
+    "tts.runner": "TTRegression.cmd",
+    "python.languageServer": "Pylance"
+}

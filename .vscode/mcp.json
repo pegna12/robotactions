@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"robotmcp": {
+			"type": "stdio",
+			"command": "uv",
+			"args": [
+				"run",
+				"-m",
+				"robotmcp.server"
+			]
+		}
+	}
+}

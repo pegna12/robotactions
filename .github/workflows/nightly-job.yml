@@ -1,0 +1,43 @@
+name: Run Robot Framework Tests
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 17 * * *'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Install Python and UV
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+        with:
+          python-version: '3.12'
+
+      - name: Run Robot Framework tests
+        run: |
+          uv run robot tests
+      - name: Upload Robot Framework Test Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: robot-framework-report
+          path: ./results
+
+    report:
+      if: always()
+      needs: test
+      runs-on: ubuntu-latest
+      
+      steps:
+        - uses: actions/checkout@v7
+        - name: Download Robot Framework Test Report
+          uses: actions/download-artifact@v3
+          with:
+            name: robot-framework-report
+            path: ./results
+        - name: Upload Robot Framework Test Report GH
+          uses: joonvena/robotframework-reporter-action@v2.5
