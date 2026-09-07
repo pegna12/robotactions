@@ -22,7 +22,7 @@ jobs:
         run: |
           uv run robot tests
       - name: Upload Robot Framework Test Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: robot-framework-report
           path: ./results
@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Download Robot Framework Test Report
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v8
         with:
           name: robot-framework-report
           path: ./results
