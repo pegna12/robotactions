@@ -26,7 +26,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: robot-framework-report
-          path: ./results
+          path: .
 
   report:
     if: always()
@@ -39,6 +39,6 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: robot-framework-report
-          path: ./results
+          path: .
       - name: Upload Robot Framework Test Report GH
         uses: joonvena/robotframework-reporter-action@v2.5
