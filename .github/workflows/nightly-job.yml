@@ -24,7 +24,7 @@ jobs:
 
       - name: Run Robot Framework tests
         run: |
-          uv run robot tests
+          uv run robot --xunit report.xunit tests
         continue-on-error: true
       - name: Upload Robot Framework Test Report
         uses: actions/upload-artifact@v7
@@ -49,8 +49,7 @@ jobs:
           name: robot-framework-report
           path: .
       - name: Upload Robot Framework Test Report GH
-        uses: joonvena/robotframework-reporter-action@v2.5
+        uses: EnricoMi/publish-unit-test-result-action@v2
         with:
-          gh_access_token: ${{ secrets.GITHUB_TOKEN }}
-          report_path: .
-          failed_tests_on_top: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: **/report.xunit
